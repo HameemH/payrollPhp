@@ -1,28 +1,37 @@
 <?php
-  session_start();  
 
-  if (isset($_SESSION['user'])) {
-      $user = $_SESSION['user'];  
-  } else {
-      header("Location: login.php");
-      exit();
-  }
+
+session_start();  
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];  
+} else {
+    header("Location: login.php");
+    exit();
+}
+      
+ 
   require_once "config.php";
   $email=$user['email'];
-  $eId=$user['emp_id'];
+  $sqlUser = "SELECT * FROM `emp_info` WHERE email='$email' ";
+  $userRes=$conn->query($sqlUser);
+  $userRow=$userRes->fetch_assoc();
+  
+//   employee part update portion starts
+  
+  $eId=$_GET['emp_id'];
+
   $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
   $sql1="SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
   $sql2="SELECT * FROM `loan` where emp_id='$eId'";
-  $sql3="SELECT * FROM `user` where emp_id='$eId'";
     $result = $conn->query($sql);
     $result1 = $conn->query($sql1);
     $result2 = $conn->query($sql2);
-    $result3 = $conn->query($sql3);
 
     $row = $result->fetch_assoc() ;
     $row1 = $result1->fetch_assoc() ;
     $row2 = $result2->fetch_assoc() ;
-    $row3 = $result3->fetch_assoc() ;
+    //echo isset($_POST['employee-name']);
 
    if(isset($_POST['employee-name']))
    {
@@ -31,23 +40,17 @@
        $mobile=$_POST['phone'];
        $address=$_POST['address'];
        $id=$_POST['employee-id'];
-       $pass=$_POST['pass'];
        $sql = "UPDATE `emp_info` SET `mobile` = '$mobile',
        
                                      `name` = '$name',
                                      `address` = '$address',
                                      `email` = '$email'
         WHERE `emp_info`.`emp_id` = '$id'";
-         $sql1 = "UPDATE `user` SET `email` = '$email',
-       
-         `password` = '$pass'
-        WHERE `emp_id` = '$id'";
         $result = $conn->query($sql);
-        $result = $conn->query($sql1);
         if($result)
         {
             echo '<script>alert("Profile Updated")</script>';
-            Header('Location: '.$_SERVER['PHP_SELF']);
+           header('Location: ' . $_SERVER['PHP_SELF'] . '?emp_id=' . $id);
 
         }
         else
@@ -58,6 +61,9 @@
        
 
    }
+
+
+
       
 ?>
 
@@ -85,7 +91,7 @@
     <div class="d-flex">
       <?php
 
-        echo '<p class="fw-bold fs-5 me-3">' . $row['name'] . '</p>';
+        echo '<p class="fw-bold fs-5 me-3 mt-3">' . $userRow['name'] . '</p>';
       ?>
       
       <a href="logout.php" class="text-decoration-none" onclick="return confirm('Are you sure you want to log out?')"> <button class="btn btn-outline-danger" type="button">Log Out</button></a>
@@ -97,7 +103,7 @@
         <div class="grid-container">
          <section id="profile">
             <h2>Employee Profile</h2>
-            <form action="employeeprofilea.php" method="post">
+            <form action="update_employee.php" method="post">
 
                 
                 <div class="form-group">
@@ -117,10 +123,6 @@
                     <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" ><br>
                 </div>
                 <div class="form-group">
-                    <label for="pass">Password(editable):</label>
-                    <input type="text" id="pass" name="pass" value="<?php echo htmlspecialchars($row3['password']); ?>" ><br>
-                </div>
-                <div class="form-group">
                     <label for="phone">Phone(editable):</label>
                     <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($row['mobile']); ?>" ><br>
                 </div>
@@ -132,25 +134,27 @@
                     <label for="join">Joining Date:</label>
                     <input type="text" id="join" name="join" value="<?php echo htmlspecialchars($row['joining_date']); ?>" ><br>
                 </div>
-                <button type="submit">Update Profile</button>
+                <button type="submit" onclick="return confirm('Are you sure you want to Update?')">Update Profile</button>
             </form>
           </section>
           <section id="salary">
             <h2>Salary Information</h2>
-            <form>
-                <label for="basic-salary">Basic Salary:</label>
-                <input type="text" id="basic-salary" name="basic-salary" readonly value="<?php echo htmlspecialchars($row1['base_salary']); ?>" ><br>
-                <label for="allowances">Bank Acc:</label>
-                <input type="text" id="bank" name="bank" readonly value="<?php echo htmlspecialchars($row1['bank_acc']); ?>"><br>
+            <form  action="updateSalary.php" method="post">
+            <input type="hidden" id="id" name="id"  value="<?php echo htmlspecialchars($row1['emp_id']); ?>" ><br>
+                <label for="basic-salary">Basic Salary(editable):</label>
+                <input type="number" id="basic-salary" name="basic-salary"  value="<?php echo htmlspecialchars($row1['base_salary']); ?>" ><br>
+                <label for="allowances">Bank Acc(editable):</label>
+                <input type="number" id="bank" name="bank"  value="<?php echo htmlspecialchars($row1['bank_acc']); ?>"><br>
                 <label for="deductions">Loan:</label>
-                <input type="text" id="deductions" name="deductions" readonly value="<?php echo htmlspecialchars($row2['loan_ammount']); ?>"><br>
+                <input type="number" id="loanamount" name="loanamount" readonly value="<?php echo htmlspecialchars($row2['loan_ammount']); ?>"><br>
                 <label for="loan">Loan Period:</label>
                 <input type="text" id="loan" name="loan" readonly value="<?php echo htmlspecialchars($row2['loan_period']); ?>"><br>
                 <label for="month">Salary Month:</label>
-                <input type="text" id="month" name="month" readonly value="<?php echo htmlspecialchars($row1['salary_month']); ?>"><br>
-                <label for="bonus">Bonus Percentage:</label>
-                <input type="text" id="bonus" name="bonus" readonly value="<?php echo htmlspecialchars($row1['bonus_percentage']); ?>"><br>
-                
+                <input type="number" id="month" name="month" readonly value="<?php echo htmlspecialchars($row1['salary_month']); ?>"><br>
+                <label for="bonus">Bonus Percentage(editable):</label>
+                <input type="number" id="bonus" name="bonus"  value="<?php echo htmlspecialchars($row1['bonus_percentage']); ?>"><br>
+                <button type="submit">Update Salary Info</button>
+
             </form>
           </section>
         </div>

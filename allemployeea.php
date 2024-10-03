@@ -189,7 +189,7 @@ if ($result1->num_rows > 0) {
                     <div class="text-center m-1">
                         <!-- Buttons with links, passing emp_id to other pages using GET -->
                         <a href="pay_salary.php?emp_id=<?php echo $row['emp_id']; ?>"><button type="button" class="btn btn-outline-info mt-1">Pay salary</button></a>
-                        <a href="update_details.php?emp_id=<?php echo $row['emp_id']; ?>"><button type="button" class="btn btn-outline-primary mt-1">See & Update Details</button></a>
+                        <a href="update_employee.php?emp_id=<?php echo $row['emp_id']; ?>"><button type="button" class="btn btn-outline-primary mt-1">See & Update Details</button></a>
                         <a href="delete_employee.php?emp_id=<?php echo $row['emp_id']; ?>" onclick="return confirm('Are you sure you want to delete this employee?');"><button type="button" class="btn btn-outline-danger mt-1">Delete</button></a>
                     </div>
                 </div>

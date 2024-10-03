@@ -13,13 +13,16 @@
   $sql = "SELECT * FROM `emp_info` WHERE email='$email' ";
   $sql1="SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
   $sql2="SELECT * FROM `loan` where emp_id='$eId'";
+  $sql3="SELECT * FROM `user` where emp_id='$eId'";
     $result = $conn->query($sql);
     $result1 = $conn->query($sql1);
     $result2 = $conn->query($sql2);
+    $result3 = $conn->query($sql3);
 
     $row = $result->fetch_assoc() ;
     $row1 = $result1->fetch_assoc() ;
     $row2 = $result2->fetch_assoc() ;
+    $row3 = $result3->fetch_assoc() ;
 
    if(isset($_POST['employee-name']))
    {
@@ -28,13 +31,19 @@
        $mobile=$_POST['phone'];
        $address=$_POST['address'];
        $id=$_POST['employee-id'];
+       $pass=$_POST['pass'];
        $sql = "UPDATE `emp_info` SET `mobile` = '$mobile',
        
                                      `name` = '$name',
                                      `address` = '$address',
                                      `email` = '$email'
         WHERE `emp_info`.`emp_id` = '$id'";
+         $sql1 = "UPDATE `user` SET `email` = '$email',
+       
+         `password` = '$pass'
+        WHERE `emp_id` = '$id'";
         $result = $conn->query($sql);
+        $result = $conn->query($sql1);
         if($result)
         {
             echo '<script>alert("Profile Updated")</script>';
@@ -69,7 +78,7 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
   
-    <a class="navbar-brand" href="welcome_employee.php">
+    <a class="navbar-brand" href="welcome_admin.php">
     <img src="./logos/logo.jpg" alt="" width="35" height="35"
   class=" align-text-top ">  
     Automated Payroll System</a>
@@ -88,7 +97,7 @@
         <div class="grid-container">
          <section id="profile">
             <h2>Employee Profile</h2>
-            <form action="employeeprofileu.php" method="post">
+            <form action="employeeprofilea.php" method="post">
 
                 
                 <div class="form-group">
@@ -106,6 +115,10 @@
                 <div class="form-group">
                     <label for="email">Email(editable):</label>
                     <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" ><br>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password(editable):</label>
+                    <input type="text" id="pass" name="pass" value="<?php echo htmlspecialchars($row3['password']); ?>" ><br>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone(editable):</label>
