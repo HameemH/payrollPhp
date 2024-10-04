@@ -106,7 +106,7 @@
 
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-outline-info btn-lg"> Add Employee</button>
+      <a href="add_employee.php">  <button type="button" class="btn btn-outline-info btn-lg"> Add Employee</button></a>
       </div>
     </div>
     <br>
@@ -130,13 +130,13 @@
                 payments and tax compliance.</p>
             <div>
                 <ul class=”socials”>
-                    <li><img src="../logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
+                    <li><img src="./logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
                             class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
+                    <li><img src="./logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
+                    <li><img src="./logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
+                    <li><img src="./logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
 
                 </ul>

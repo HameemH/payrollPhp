@@ -46,7 +46,10 @@ if (isset($_SESSION['user'])) {
                                      `address` = '$address',
                                      `email` = '$email'
         WHERE `emp_info`.`emp_id` = '$id'";
+         
         $result = $conn->query($sql);
+
+
         if($result)
         {
             echo '<script>alert("Profile Updated")</script>';
@@ -119,8 +122,8 @@ if (isset($_SESSION['user'])) {
                     <input type="text" id="department" name="department" readonly value="<?php echo htmlspecialchars($row['designation']); ?>"><br>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email(editable):</label>
-                    <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" ><br>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" readonly value="<?php echo htmlspecialchars($row['email']); ?>" ><br>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone(editable):</label>

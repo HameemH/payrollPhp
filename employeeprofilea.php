@@ -85,7 +85,7 @@
     <div class="d-flex">
       <?php
 
-        echo '<p class="fw-bold fs-5 me-3">' . $row['name'] . '</p>';
+        echo '<p class="fw-bold fs-5 me-3 mt-2">' . $row['name'] . '</p>';
       ?>
       
       <a href="logout.php" class="text-decoration-none" onclick="return confirm('Are you sure you want to log out?')"> <button class="btn btn-outline-danger" type="button">Log Out</button></a>
@@ -132,7 +132,7 @@
                     <label for="join">Joining Date:</label>
                     <input type="text" id="join" name="join" value="<?php echo htmlspecialchars($row['joining_date']); ?>" ><br>
                 </div>
-                <button type="submit">Update Profile</button>
+                <button type="submit" onclick="return confirm('Are you sure you want to Update?')">Update Profile</button>
             </form>
           </section>
           <section id="salary">
