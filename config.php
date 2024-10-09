@@ -1,4 +1,4 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "123456", "payroll") or die("something went wrong");
+$conn = mysqli_connect("localhost", "root", "", "payrollp") or die("something went wrong");
 
 ?>

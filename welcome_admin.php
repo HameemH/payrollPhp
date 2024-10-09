@@ -9,7 +9,9 @@
   }
   require_once "config.php";
   $email=$user['email'];
-  $sql = "SELECT * FROM `emp_info` WHERE email='$email' ";
+  $eId=$user['emp_id'];
+
+  $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc() ;
 
