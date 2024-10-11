@@ -1,13 +1,62 @@
+<?php
+  session_start();  
+
+  if (isset($_SESSION['user'])) {
+      $user = $_SESSION['user'];  
+  } else {
+      header("Location: login.php");
+      exit();
+  }
+  require_once "config.php";
+  $eId1=$user['emp_id'];
+
+  $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId1' ";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc() ;
+
+    $eId=$_GET['emp_id'];
+
+    $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
+    $sql1="SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
+    $sql2="SELECT * FROM `loan` where emp_id='$eId'";
+      $result = $conn->query($sql);
+      $result1 = $conn->query($sql1);
+      $result2 = $conn->query($sql2);
+  
+      $row = $result->fetch_assoc() ;
+      $row1 = $result1->fetch_assoc() ;
+      $row2 = $result2->fetch_assoc() ;
+      
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee - Automated Payroll System</title>
-    <link rel="stylesheet" href="../css/employeeP_styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/employeeP_styles.css">
+    <link rel="stylesheet" href="./css/navbar_footer_style.css">
 </head>
 <body>
-    
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+  
+    <a class="navbar-brand" href="welcome_admin.php">
+    <img src="./logos/logo.jpg" alt="" width="35" height="35"
+  class=" align-text-top ">  
+    Automated Payroll System</a>
+    <div class="d-flex">
+      <?php
+
+        echo '<p class="fw-bold fs-5 me-3 mt-2">' . $row['name'] . '</p>';
+      ?>
+      
+      <a href="logout.php" class="text-decoration-none" onclick="return confirm('Are you sure you want to log out?')"> <button class="btn btn-outline-danger" type="button">Log Out</button></a>
+   </div>
+  </div>
+</nav>
     <main>
         <div class="grid-container">
         <section id="profile">

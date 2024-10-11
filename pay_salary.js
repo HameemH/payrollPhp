@@ -25,5 +25,5 @@ document.querySelector("#profile form").addEventListener("submit", function(even
     document.getElementById("deductions").value = totalDeductions.toFixed(2);
     document.getElementById("loan").value = loanEmi.toFixed(2);
     document.getElementById("Leaves").value = leave;
-    document.getElementById("time").value = overtimePay.toFixed(2);
+    document.getElementById("time").value =overtimeHours;
 });

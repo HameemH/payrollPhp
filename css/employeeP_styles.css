@@ -24,6 +24,7 @@ body {
     text-align: center;
     box-shadow: 2px 2px 5px rgba(235, 151, 151, 0.2);
     width: 600px; 
+    min-height: 600px;
     display: flex; 
     flex-direction: column;
     justify-content: space-between;

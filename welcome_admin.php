@@ -115,7 +115,8 @@
 
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-outline-info btn-lg"> Loans </button>
+      <a href="loan.php">
+        <button type="button" class="btn btn-outline-info btn-lg"> Loan Review </button></a>
       </div>
       
     </div><br>
