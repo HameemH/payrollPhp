@@ -79,8 +79,18 @@ WHERE emp_id='$eId' AND loan_status='Accepted'";
     
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
+  <?php 
+     if($user['role']=='Admin')
+     {
+        echo '<a class="navbar-brand" href="welcome_admin.php">';
+     }
+     else
+     {
+        echo '<a class="navbar-brand" href="welcome_employee.php">';
+     }
   
-    <a class="navbar-brand" href="welcome_admin.php">
+  ?>
+    
     <img src="./logos/logo.jpg" alt="" width="35" height="35"
   class=" align-text-top ">  
     Automated Payroll System</a>

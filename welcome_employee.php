@@ -92,7 +92,7 @@
    <div class="col-6">
         <div class="row">
       <div class="col">
-       <a href="./employeeprofileu.php"> <button type="button" class="btn btn-outline-info btn-lg">My Profile </button></a>
+       <a href="./employeeprofilea.php"> <button type="button" class="btn btn-outline-info btn-lg">My Profile </button></a>
       </div>
     </div><br>
 
@@ -104,14 +104,38 @@
       <br>
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-outline-info btn-lg"> Apply Loan </button>
+        <button type="button" class="btn btn-outline-info btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Apply Loan </button>
       </div>
       
     </div><br>
    
   </div><br></div>
   </div>
+   <!-- Modal  For loan Application-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Loan Application</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="applyloan.php" method="post">
+      <div class="modal-body">
+                <input type="hidden" id="emp_id" name="emp_id" value=<?php $eid ?> > 
+                    <input class="mb-1 p-1 w-100" type="number" id="amount" name="amount" placeholder="Enter your desired Loan Amount"><br>  
+                    <input class="mb-1 p-1 w-100" type="number" id="period" name="period" placeholder="Enter your desired Loan period"><br>
+               
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Apply</button>
+        </div>
 
+      </form>
+      
+    </div>
+  </div>
+</div>
   <footer>
     <div>
         <div>
