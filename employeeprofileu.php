@@ -12,7 +12,9 @@
   $eId=$user['emp_id'];
   $sql = "SELECT * FROM `emp_info` WHERE email='$email' ";
   $sql1="SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
-  $sql2="SELECT * FROM `loan` where emp_id='$eId'";
+  $sql2="SELECT emp_id, SUM(loan_ammount) as total_loan_amount, SUM(loan_period) as total_loan_period 
+FROM `loan` 
+WHERE emp_id='$eId' AND loan_status='Accepted'";
   $sql3="SELECT * FROM `user` where emp_id='$eId'";
     $result = $conn->query($sql);
     $result1 = $conn->query($sql1);
@@ -78,7 +80,7 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
   
-    <a class="navbar-brand" href="welcome_admin.php">
+    <a class="navbar-brand" href="welcome_employee.php">
     <img src="./logos/logo.jpg" alt="" width="35" height="35"
   class=" align-text-top ">  
     Automated Payroll System</a>
@@ -143,9 +145,9 @@
                 <label for="allowances">Bank Acc:</label>
                 <input type="text" id="bank" name="bank" readonly value="<?php echo htmlspecialchars($row1['bank_acc']); ?>"><br>
                 <label for="deductions">Loan:</label>
-                <input type="text" id="deductions" name="deductions" readonly value="<?php echo htmlspecialchars($row2['loan_ammount']); ?>"><br>
+                <input type="text" id="deductions" name="deductions" readonly value="<?php echo htmlspecialchars(isset($row2['total_loan_amount']) ? $row2['total_loan_amount'] : 0); ?>"><br>
                 <label for="loan">Loan Period:</label>
-                <input type="text" id="loan" name="loan" readonly value="<?php echo htmlspecialchars($row2['loan_period']); ?>"><br>
+                <input type="text" id="loan" name="loan" readonly value="<?php echo htmlspecialchars(isset($row2['total_loan_period']) ? $row2['total_loan_period'] : 0); ?>"><br>
                 <label for="month">Salary Month:</label>
                 <input type="text" id="month" name="month" readonly value="<?php echo htmlspecialchars($row1['salary_month']); ?>"><br>
                 <label for="bonus">Bonus Percentage:</label>

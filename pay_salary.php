@@ -10,9 +10,9 @@
   require_once "config.php";
   $eId1=$user['emp_id'];
 
-  $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId1' ";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc() ;
+  $sql3 = "SELECT * FROM `emp_info` WHERE emp_id='$eId1' ";
+    $result3 = $conn->query($sql3);
+    $row3 = $result3->fetch_assoc() ;
 
     $eId=$_GET['emp_id'];
 
@@ -50,7 +50,7 @@
     <div class="d-flex">
       <?php
 
-        echo '<p class="fw-bold fs-5 me-3 mt-2">' . $row['name'] . '</p>';
+        echo '<p class="fw-bold fs-5 me-3 mt-2">' . $row3['name'] . '</p>';
       ?>
       
       <a href="logout.php" class="text-decoration-none" onclick="return confirm('Are you sure you want to log out?')"> <button class="btn btn-outline-danger" type="button">Log Out</button></a>

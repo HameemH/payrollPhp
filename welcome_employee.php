@@ -1,18 +1,54 @@
+<?php
+  session_start();  
+
+  if (isset($_SESSION['user'])) {
+      $user = $_SESSION['user'];  
+  } else {
+      header("Location: login.php");
+      exit();
+  }
+  require_once "config.php";
+  $email=$user['email'];
+  $eId=$user['emp_id'];
+
+  $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc() ;
+
+
+      
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADMIN</title>
+  <title>Employee</title>
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../css/navbar_footer_style.css">
+  <link rel="stylesheet" href="./css/navbar_footer_style.css">
 </head>
 
 <body style="background-color:#ffed;">
   
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+  
+    <a class="navbar-brand">
+    <img src="./logos/logo.jpg" alt="" width="35" height="35"
+  class=" align-text-top ">  
+    Automated Payroll System</a>
+    <div class="d-flex">
+      <?php
 
+        echo '<p class="fw-bold fs-5 me-3">' . $row['name'] . '</p>';
+      ?>
+      
+      <a href="logout.php" class="text-decoration-none" onclick="return confirm('Are you sure you want to log out?')"> <button class="btn btn-outline-danger" type="button">Log Out</button></a>
+   </div>
+  </div>
+</nav>
     
 
   <div class="container text-center pt-5">
@@ -56,20 +92,13 @@
    <div class="col-6">
         <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-outline-info btn-lg">My Profile </button>
+       <a href="./employeeprofileu.php"> <button type="button" class="btn btn-outline-info btn-lg">My Profile </button></a>
       </div>
     </div><br>
 
     <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-outline-info btn-lg"> Department Details</button>
-      </div>
-    </div>
-    <br>
-
-    <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-outline-info btn-lg"> All Employee Information</button>
+         <a href="allemployeeu.php"> <button type="button" class="btn btn-outline-info btn-lg"> All Employee Information</button> </a>
         </div>
       </div>
       <br>
@@ -92,13 +121,13 @@
                 payments and tax compliance.</p>
             <div>
                 <ul class=”socials”>
-                    <li><img src="../logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
+                    <li><img src="./logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
                             class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
+                    <li><img src="./logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
+                    <li><img src="./logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
-                    <li><img src="../logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
+                    <li><img src="./logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
                             width="35" height="35" class="d-inline-block align-text-top "></li>
 
                 </ul>
