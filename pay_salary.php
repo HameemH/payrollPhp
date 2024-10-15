@@ -1,3 +1,5 @@
+
+
 <?php
   session_start();  
 
@@ -18,7 +20,7 @@
 
     $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
     $sql1="SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
-    $sql2="SELECT * FROM `loan` where emp_id='$eId'";
+    $sql2="SELECT SUM(emi) as emi FROM `loan` where emp_id='$eId' AND loan_status='Accepted' AND loan_ammount>0;";
       $result = $conn->query($sql);
       $result1 = $conn->query($sql1);
       $result2 = $conn->query($sql2);
@@ -26,6 +28,8 @@
       $row = $result->fetch_assoc() ;
       $row1 = $result1->fetch_assoc() ;
       $row2 = $result2->fetch_assoc() ;
+
+      
       
 ?>
 <!DOCTYPE html>
@@ -64,19 +68,32 @@
             <form>
                 <div class="form-group">
                     <label for="employee-id">Employee ID:</label>
-                    <input type="text" id="employee-id" name="employee-id" ><br>
+                    <input type="text" id="employee-id" name="employee-id" value="<?php echo htmlspecialchars($row['emp_id']); ?>"  readonly ><br>
                 </div>
                 <div class="form-group">
                     <label for="employee-name">Name:</label>
-                    <input type="text" id="employee-name" name="employee-name" ><br>
+                    <input type="text" id="employee-name" name="employee-name"
+                    value="<?php echo htmlspecialchars($row['name']); ?>" readonly  ><br>
                 </div>
                 <div class="form-group">
                     <label for="Salary">Salary:</label>
-                    <input type="text" id="Salary" name="Salary" ><br>
+                    <input type="text" id="Salary" name="Salary"
+                    value="<?php echo htmlspecialchars($row1['base_salary']); ?>" readonly ><br>
+                </div>
+                <div class="form-group">
+                    <label for="Month">Salary Month:</label>
+                    <input type="text" id="Month" name="Month"
+                    value="<?php echo htmlspecialchars($row1['salary_month']); ?>" readonly ><br>
+                </div>
+                <div class="form-group">
+                    <label for="Percentage">Bonus Percentage:</label>
+                    <input type="text" id="Percentage" name="Percentage"
+                    value="<?php echo htmlspecialchars($row1['bonus_percentage']); ?>" readonly ><br>
                 </div>
                 <div class="form-group">
                     <label for="Emi">Loan Emi:</label>
-                    <input type="text" id="Emi" name="Emi" ><br>
+                    <input type="text" id="Emi" name="Emi"
+                    value="<?php echo htmlspecialchars($row2['emi']); ?>" readonly ><br>
                 </div>
                 <div class="form-group">
                     <label for="Leave">Leave:</label>
@@ -93,12 +110,12 @@
                     <label for="Overtime">Overtime Hour:</label>
                     <input type="text" id="Overtime" name="Overtime" ><br>
                 </div>
-                <button type="submit">Update Profile</button>
+                <button type="submit">Calculate Salary</button>
             </form>
         </section>
         <section id="salary">
             <h2>Salary Information</h2>
-            <form>
+            <form  action="pay_salary_amount.php" method="post">
                 <label for="Id">Employee Id:</label>
                 <input type="text" id="Id" name="Id" readonly><br>
                 <label for="tSalary">Total Salary:</label>
@@ -113,13 +130,39 @@
                 <input type="text" id="Leaves" name="Leaves" readonly><br>
                 <label for="time">Overtime:</label>
                 <input type="text" id="time" name="time" readonly><br>
-                <button type="submit">Update Profile</button>
+                <button type="submit" onclick="return confirm('Pay Salary?')">Give Salary</button>
             </form>
         </section>
         </div>
        
     
     </main>
+    <footer>
+    <div>
+        <div>
+            <h3>Automated Payroll System</h3>
+            <p> An automated payroll system is software that calculates salaries, deductions, and taxes, generates
+                paychecks, and maintains records, streamlining the process and ensuring accuracy in employee
+                payments and tax compliance.</p>
+            <div>
+                <ul class=”socials”>
+                    <li><img src="./logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
+                            class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+
+                </ul>
+            </div>
+            <h3>Copyright @ 2024 by The Great Group Of Lazys</h3>
+        </div>
+    </div>
+
+
+</footer>
     <script src="./pay_salary.js"></script>
 </body>
 </html>

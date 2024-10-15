@@ -161,22 +161,71 @@ if (isset($_SESSION['user'])) {
             </form>
           </section>
         </div>
-        <section id="leave">
-            <h2>Leave Report</h2>
+        <section id="leave" class="m-2">
+            <h2>Finance Report</h2>
             <table class="square-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Type of Leave</th>
-                        <th>Duration</th>
-                        <th>Status</th>
-                        <th>Deduction</th>
-                    </tr>
-                </thead>
-            </table>
+    <thead>
+        <tr>
+            <th>finance_id</th>
+            <th>trx_salary</th>
+            <th>trx_time</th>
+            <th>leaves</th>
+            <th>overtime</th>
+            <th>bonus_given</th>
+            <th>deduction</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $sql4= "SELECT * FROM `financial_info` where emp_id='$eId'";
+        $result4=$conn->query($sql4);
+        if($result4->num_rows > 0){
+
+            while($row4 = $result4->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row4['finance_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['trx_salary']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['trx_time']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['leaves']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['overtime']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['bonus_given']) . "</td>";
+                echo "<td>" . htmlspecialchars($row4['deduction']) . "</td>";
+                echo "</tr>";
+            }
+        }
+        
+        ?>
+    </tbody>
+</table>
         </section>
     
     </main>
+    <footer>
+    <div>
+        <div>
+            <h3>Automated Payroll System</h3>
+            <p> An automated payroll system is software that calculates salaries, deductions, and taxes, generates
+                paychecks, and maintains records, streamlining the process and ensuring accuracy in employee
+                payments and tax compliance.</p>
+            <div>
+                <ul class=”socials”>
+                    <li><img src="./logos/367582_facebook_social_icon.png" alt="" width="35" height="35"
+                            class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5305170_bird_social media_social network_tweet_twitter_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5282542_linkedin_network_social network_linkedin logo_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+                    <li><img src="./logos/5279112_camera_instagram_social media_instagram logo_icon.png" alt=""
+                            width="35" height="35" class="d-inline-block align-text-top "></li>
+
+                </ul>
+            </div>
+            <h3>Copyright @ 2024 by The Great Group Of Lazys</h3>
+        </div>
+    </div>
+
+
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
