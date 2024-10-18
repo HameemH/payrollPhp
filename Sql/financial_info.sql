@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 09:53 PM
+-- Generation Time: Oct 18, 2024 at 11:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `automated_payroll_system`
+-- Database: `payrollp`
 --
 
 -- --------------------------------------------------------
@@ -34,8 +34,20 @@ CREATE TABLE `financial_info` (
   `trx_time` date DEFAULT NULL,
   `leaves` int(11) NOT NULL,
   `overtime` float NOT NULL,
-  `bonus_given` double NOT NULL
+  `bonus_given` double NOT NULL,
+  `deduction` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `financial_info`
+--
+
+INSERT INTO `financial_info` (`finance_id`, `emp_id`, `trx_salary`, `trx_time`, `leaves`, `overtime`, `bonus_given`, `deduction`) VALUES
+(1, 6, 10000, '2024-10-16', 5, 15, 1000, 0),
+(2, 6, 10000, '2024-10-16', 5, 15, 1000, 1200),
+(3, 2, 68250, '2024-10-16', 5, 25, 12000, 11250),
+(4, 2, 68250, '2024-10-16', 5, 25, 12000, 11250),
+(5, 1, 61067, '2024-10-16', 20, 8, 12000, 13333.3);
 
 --
 -- Indexes for dumped tables
@@ -47,6 +59,16 @@ CREATE TABLE `financial_info` (
 ALTER TABLE `financial_info`
   ADD PRIMARY KEY (`finance_id`),
   ADD KEY `emp_id` (`emp_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `financial_info`
+--
+ALTER TABLE `financial_info`
+  MODIFY `finance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

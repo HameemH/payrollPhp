@@ -72,19 +72,34 @@
                 <div>880440 tk.</div>
               </div><br>
               <div class="row-sm-4 shadow" style=" background-color:#e8f8ff;padding: 10px;margin: 1%;border-radius: 30%;">Total Salary
-                <div>1000000 tk.</div>
+              <?php 
+                              $sql2="SELECT SUM(base_salary) as total_salary FROM `salary_info`;";
+                              $result2 = $conn->query($sql2);
+                              $row2 = $result2->fetch_assoc() ;
+
+               echo "<div>".$row2['total_salary']. " tk.</div>"; ?>
               </div>
       </div>
            <!--dash2side-->  
             <div class="col-6">
                             <div class="row-sm-4 shadow" style=" background-color:#f0eec0;padding: 10px;margin: 1%;border-radius: 30%;">Salary Paid
-                <div>0-80000 tk.</div>
+                              <?php 
+                              $sql1="SELECT SUM(trx_salary) as salary_given FROM `financial_info`;";
+                              $result1 = $conn->query($sql1);
+                              $row1 = $result1->fetch_assoc() ;
+
+               echo "<div>".$row1['salary_given']. " tk.</div>"; ?>
               </div><br>
                 <div class="row-sm-4 shadow" style=" background-color:#e4e1fa;padding: 10px;margin: 1%;border-radius: 30%;">Company Loan
                   <div>9500000 tk.</div>
                 </div><br>
               <div class="row-sm-4 shadow" style="background-color: #d5ebe6;padding: 10px;margin: 1%;border-radius: 30%;">Total employee 
-                <div>1000</div>
+              <?php 
+                              $sql3="SELECT count(emp_id) as total_emp FROM `emp_info`;";
+                              $result3 = $conn->query($sql3);
+                              $row3 = $result3->fetch_assoc() ;
+
+               echo "<div>".$row3['total_emp']. "</div>"; ?>
               </div>
                 </div>
     </div>

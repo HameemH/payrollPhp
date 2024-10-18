@@ -100,7 +100,7 @@
                           
                           </div>
                           
-                            <button class="mx-auto btn btn-outline-light shadow rounded-pill px-5 " onclick="">LOGIN</button>
+                            <button class="mx-auto btn btn-outline-light shadow rounded-pill px-5 login_button " onclick="">LOGIN</button>
                           
                           </form>
                           

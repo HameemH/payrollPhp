@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 07:23 PM
+-- Generation Time: Oct 18, 2024 at 11:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `automated_payroll_system`
+-- Database: `payrollp`
 --
 
 -- --------------------------------------------------------
@@ -47,7 +47,8 @@ INSERT INTO `emp_info` (`emp_id`, `email`, `password`, `name`, `designation`, `j
 (2, 'hameem29@gmail.com', '1234', 'Hameem Hossain', 'CEO', '2002-10-24', 'Khathal Bagan, Baluchora,Bayzid Bostami, Chattogram. ', '01714311154'),
 (3, 'mahitun37@gmail.com', '1234', 'Mahitun Nesa Mahi', 'MD', '2002-01-11', 'Nalapara, Kotowali, Chattogram. ', '01714311145'),
 (4, 'issue31@gmail.com', '1234', 'Ishrat Jahan Estie', 'MD', '2002-01-18', 'Jaille para, Patenga, Chattogram.', '01714311204'),
-(5, 'sohi36@gmail.com', '1234', 'Sumaiya Newaz', 'Chief Designer', '2002-10-23', 'Rahamat Ganj, Andorkilla, Chattogram.', '01714312204');
+(5, 'sohi36@gmail.com', '1234', 'Sumaiya Newaz', 'Chief Designer', '2002-10-23', 'Rahamat Ganj, Andorkilla, Chattogram.', '01714312204'),
+(6, 'hameemhossain2@gmail.com', '123456', 'Hameem Hossain', 'GP', '2024-10-13', 'Balucara', '01641264201');
 
 --
 -- Indexes for dumped tables
@@ -58,6 +59,16 @@ INSERT INTO `emp_info` (`emp_id`, `email`, `password`, `name`, `designation`, `j
 --
 ALTER TABLE `emp_info`
   ADD PRIMARY KEY (`emp_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `emp_info`
+--
+ALTER TABLE `emp_info`
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

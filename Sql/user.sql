@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 08:43 PM
+-- Generation Time: Oct 18, 2024 at 11:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `automated_payroll_system`
+-- Database: `payrollp`
 --
 
 -- --------------------------------------------------------
@@ -40,10 +40,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`emp_id`, `email`, `password`, `role`) VALUES
 (1, 'hassanmehedi347@gmail.com', '123456', 'Admin'),
-(2, 'hameem39@gmail.com', '1234', 'Admin'),
+(2, 'hameem29@gmail.com', '123456', 'Admin'),
 (3, 'mahitun37@gmail.com', '1234', 'Admin'),
 (4, 'issue31@gmail.com', '1234', 'Admin'),
-(5, 'sohi36@gmail.com', '1234', 'Admin');
+(5, 'sohi36@gmail.com', '1234', 'Admin'),
+(6, 'hameemhossain2@gmail.com', '123456', 'User');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +64,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

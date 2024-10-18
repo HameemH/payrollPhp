@@ -14,6 +14,14 @@
   $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc() ;
+  $sql1 = "SELECT * FROM `salary_info` WHERE emp_id='$eId' ";
+    $result1 = $conn->query($sql1);
+    $row1 = $result1->fetch_assoc() ;
+    $sql2="SELECT emp_id, SUM(loan_ammount) as total_loan_amount, SUM(loan_period) as total_loan_period 
+FROM `loan` 
+WHERE emp_id='$eId' AND loan_status='Accepted'";
+  $result2=$conn->query($sql2);
+  $row2=$result2->fetch_assoc();
 
 
       
@@ -62,23 +70,33 @@
     <div class="row">
       <div class="col-6">
               <div class="row-sm-4 shadow shadow" style="background-color: #ffe8f5;padding: 10px;margin:1%; border-radius: 30%;">Id Number
-                <div>01</div>
+              <?php 
+                              
+               echo "<div>".$row['emp_id']. "</div>"; ?>
              </div><br>
 
               <div class="row-sm-4 shadow shadow" style="background-color:#f7e8ff;padding: 10px;margin: 1%; border-radius: 30%;">Current Salary
-                <div>880440 tk</div>
+              <?php 
+                              
+                              echo "<div>".$row1['base_salary']. " tk</div>"; ?>
               </div><br>
               <div class="row-sm-4 shadow" style=" background-color:#e8f8ff;padding: 10px;margin: 1%;border-radius: 30%;">Designation
-                <div>CEO</div>
+              <?php 
+                              
+                              echo "<div>".$row['designation']. "</div>"; ?>
               </div>
       </div>
            <!--dash2side-->  
             <div class="col-6">
                             <div class="row-sm-4 shadow" style=" background-color:#f0eec0;padding: 10px;margin: 1%;border-radius: 30%;">Salary Month
-                <div>January</div>
+                            <?php 
+                              
+                              echo "<div>".$row1['salary_month']. "</div>"; ?>
               </div><br>
                 <div class="row-sm-4 shadow" style=" background-color:#e4e1fa;padding: 10px;margin: 1%;border-radius: 30%;">Loan
-                  <div>9500000 tk.</div>
+                <?php 
+                              
+                              echo "<div>".$row2['total_loan_amount']. "</div>"; ?>
                 </div><br>
               <div class="row-sm-4 shadow" style="background-color: #d5ebe6;padding: 10px;margin: 1%;border-radius: 30%;">Leave Left
                 <div>10</div>

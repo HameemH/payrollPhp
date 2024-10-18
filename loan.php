@@ -17,8 +17,12 @@
     $result = $conn->query($sql);
     $row = $result->fetch_assoc() ;
 
-    $sql1 = "SELECT * FROM `loan`  ";
+    $sql1 = "SELECT * FROM `loan` WHERE loan_status='Pending' ";
     $result1 = $conn->query($sql1);
+    $sql2 = "SELECT * FROM `loan` WHERE loan_status='Accepted' ";
+    $result2 = $conn->query($sql2);
+    $sql3 = "SELECT * FROM `loan` WHERE loan_status='Rejected' ";
+    $result3 = $conn->query($sql3);
 
 
       
@@ -41,7 +45,7 @@
           <!--font awsome-->
     <script src="https://kit.fontawesome.com/5448101bd9.js" crossorigin="anonymous"></script>
     <!--css link-->
-    <link rel="stylesheet" href="../css/login_loan-style.css">
+    <link rel="stylesheet" href="./css/login_loan-style.css">
     <link rel="stylesheet" href="./css/navbar_footer_style.css">
 
     <title>Loan Details</title>
@@ -67,85 +71,130 @@
 </nav>
 
 
-    <div class="container">
+<div class="container">
+     <h2 align="center">Loan Application Table</h2>
         <table class="table table-hover mt-5">
+           
             <thead class="tab_head">
                 <tr>
                     <th scope="col">Employee ID</th>
                     <th scope="col">Loan Amount</th>
                     <th scope="col">Loan Length</th>
                     <th scope="col">Loan Status</th>
+                    <th scope="col">Loan Emi</th>
                     <th scope="col">Action-1</th>
                     <th scope="col">Action-2</th>
                 </tr>
             </thead>
-            <tbody id="loanDetails">
+     <tbody id="loanDetails">
           <?php  if ($result1->num_rows > 0) {
     
     while ($row1 = $result1->fetch_assoc()) {
         echo "<tr class='tab_body'>";
-        echo "<th scope='row'>" . $row1['emp_id'] . "</th>";  // Employee ID
-        echo "<td>" . $row1['loan_ammount'] . "</td>";        // Loan Amount
-        echo "<td>" . $row1['loan_period'] . "</td>";         // Loan Period
-        echo "<td>" . $row1['loan_status'] . "</td>";         // Loan Status
-        if($row1['loan_status']=='Rejected')
-        {
+        echo "<th scope='row'>" . $row1['emp_id'] . "</th>";  
+        echo "<td>" . $row1['loan_ammount'] . "</td>";        
+        echo "<td>" . $row1['loan_period'] . "</td>";        
+        echo "<td>" . $row1['loan_status'] . "</td>";         
+        echo "<td>" . $row1['emi'] . "</td>";         
+        
             echo "<td>
         <form method='POST' action='update_loan_status.php'>
             <input type='hidden' name='loan_id' value='" . $row1['loan_id'] . "'>
             <input type='hidden' name='status' value='Accepted'>
-            <button type='submit' class='btn btn-success' disabled>Accept</button>
+            <button type='submit' class='btn btn-success' >Accept</button>
         </form>
-      </td>";
-        }
-        else
-        {
-
-            echo "<td>
-            <form method='POST' action='update_loan_status.php'>
-                <input type='hidden' name='loan_id' value='" . $row1['loan_id'] . "'>
-                <input type='hidden' name='status' value='Accepted'>
-                <button type='submit' class='btn btn-success'>Accept</button>
-            </form>
-          </td>";
-        }
-
-
-        if($row1['loan_status']=='Accepted')
-        {
+      </td>";    
             echo "<td>
             <form method='POST' action='update_loan_status.php'>
                 <input type='hidden' name='loan_id' value='" . $row1['loan_id'] . "'>
                 <input type='hidden' name='status' value='Rejected'>
-                <button type='submit' class='btn btn-danger' disabled>Reject</button>
+                <button type='submit' class='btn btn-danger' >Reject</button>
             </form>
           </td>";
-    
-        }
-        else
-        {
-            echo "<td>
-        <form method='POST' action='update_loan_status.php'>
-            <input type='hidden' name='loan_id' value='" . $row1['loan_id'] . "'>
-            <input type='hidden' name='status' value='Rejected'>
-            <button type='submit' class='btn btn-danger'>Reject</button>
-        </form>
-      </td>";
 
-        }
-       
-
-echo "</tr>";
+   echo "</tr>";
     }
-} else {
-    echo "<tr><td colspan='6'>No loan records found</td></tr>";
-}
-?>
+   } else {
+    echo "<tr><td colspan='6'>No loan Application found</td></tr>";
+   }
+   ?>
                
                 
                 </tbody>
         </table>
-    </div>
+</div>
+<div class="container">
+     <h2 align="center">Loan Accepted Table</h2>
+        <table class="table table-hover mt-5">
+           
+            <thead class="tab_head">
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Loan Amount</th>
+                    <th scope="col">Loan Length</th>
+                    <th scope="col">Loan Status</th>
+                    <th scope="col">Loan Emi</th>
+                  
+                </tr>
+            </thead>
+     <tbody id="loanDetails">
+          <?php  if ($result2->num_rows > 0) {
+    
+    while ($row2 = $result2->fetch_assoc()) {
+        echo "<tr class='tab_body'>";
+        echo "<th scope='row'>" . $row2['emp_id'] . "</th>";  
+        echo "<td>" . $row2['loan_ammount'] . "</td>";        
+        echo "<td>" . $row2['loan_period'] . "</td>";         
+        echo "<td>" . $row2['loan_status'] . "</td>";         
+        echo "<td>" . $row2['emi'] . "</td>";        
+       
+       
+
+   echo "</tr>";
+    }
+   } else {
+    echo "<tr><td colspan='6'>No loan Record found</td></tr>";
+   }
+   ?>
+               
+                
+                </tbody>
+        </table>
+</div>
+<div class="container">
+     <h2 align="center">Loan Rejected Table</h2>
+        <table class="table table-hover mt-5">
+           
+            <thead class="tab_head">
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Loan Amount</th>
+                    <th scope="col">Loan Length</th>
+                    <th scope="col">Loan Status</th>
+                    <th scope="col">Loan Emi</th>
+                    
+                </tr>
+            </thead>
+     <tbody id="loanDetails">
+          <?php  if ($result3->num_rows > 0) {
+    
+    while ($row3 = $result3->fetch_assoc()) {
+        echo "<tr class='tab_body'>";
+        echo "<th scope='row'>" . $row3['emp_id'] . "</th>";  
+        echo "<td>" . $row3['loan_ammount'] . "</td>";      
+        echo "<td>" . $row3['loan_period'] . "</td>";         
+        echo "<td>" . $row3['loan_status'] . "</td>";         
+        echo "<td>" . $row3['emi'] . "</td>";         
+   echo "</tr>";
+    }
+   } else {
+    echo "<tr><td colspan='6'>No loan Record found</td></tr>";
+   }
+   ?>
+               
+                </tbody>
+        </table>
+</div>
 
 
     <footer>
