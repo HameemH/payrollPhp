@@ -14,6 +14,7 @@
   $sql = "SELECT * FROM `emp_info` WHERE emp_id='$eId' ";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc() ;
+  
 
       
 ?>
@@ -95,6 +96,7 @@
                                                     <h6 class=""><b>Id: ' . $row["emp_id"] . '</b></h6>
                                                     <h6 style="font-size: small;">Name: ' . $row["name"] . '</h6>
                                                     <h6 style="font-size: small;">Designation: ' . $row["designation"] . '</h6>
+                                                    <h6 style="font-size: small;">Designation: ' . $row["designation"] . '</h6>
                                                     <div>
                                                         <a href="pay_salary.php?emp_id=' . $row["emp_id"] . '">
                                                             <button type="button" class="btn btn-outline-info">Pay salary</button>
@@ -165,8 +167,9 @@
        <div class="row mt-5">
        <?php
 // Execute the query to fetch all rows from emp_info
-$sql1 = "SELECT * FROM `emp_info`";
+$sql1 = "SELECT * FROM `emp_info`,`user` WHERE emp_info.emp_id=user.emp_id";
 $result1 = $conn->query($sql1);
+
 
 // Check if there are results
 if ($result1->num_rows > 0) {
@@ -188,6 +191,19 @@ if ($result1->num_rows > 0) {
                     <!-- Dynamically display salary and loan -->
                     <h5 class="card-title">Mobile: <span class="salary"><?php echo $row['mobile']; ?></span></h5>
                     <h5 class="card-title">Join: <?php echo $row['joining_date']; ?></h5>
+                   <?php
+                   if($row['role']=="Admin")
+                   {
+                    echo '<h5 class="card-title">Role:'. $row['role'] ."</h5>";
+                   }
+                   else
+                   {
+                    echo '<h5 class="card-title">Role:'. $row['role'] . '<a href="make_admin.php?emp_id='.$row['emp_id'].'" class="text-decoration-none"> <button class="btn btn-danger h-25">Make Admin</button></a></h5>';
+                 
+                   }
+                    ?>
+                    
+
 
                     <div class="text-center m-1">
                         <!-- Buttons with links, passing emp_id to other pages using GET -->

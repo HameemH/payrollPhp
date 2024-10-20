@@ -94,7 +94,7 @@
                                                 <div class="my-2 p-1">
                                                     <h6 class=""><b>Id: ' . $row["emp_id"] . '</b></h6>
                                                     <h6 style="font-size: small;">Name: ' . $row["name"] . '</h6>
-                                                    <h6 style="font-size: small;">Designation: ' . $row["mobile"] . '</h6>
+                                                    <h6 style="font-size: small;">Mobile: ' . $row["mobile"] . '</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                                                 <div class="my-2 p-1">
                                                     <h6 class=""><b>Id: ' . $row["emp_id"] . '</b></h6>
                                                     <h6 style="font-size: small;">Name: ' . $row["name"] . '</h6>
-                                                    <h6 style="font-size: small;">Designation: ' . $row["mobile"] . '</h6>
+                                                    <h6 style="font-size: small;">Mobile: ' . $row["mobile"] . '</h6>
                                                     
                                                 </div>
                                             </div>
