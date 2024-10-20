@@ -40,8 +40,9 @@ if (isset($_SESSION['user'])) {
        $mobile=$_POST['phone'];
        $address=$_POST['address'];
        $id=$_POST['employee-id'];
+       $designation=$_POST['department'];
        $sql = "UPDATE `emp_info` SET `mobile` = '$mobile',
-       
+                                      `designation`='$designation',
                                      `name` = '$name',
                                      `address` = '$address',
                                      `email` = '$email'
@@ -118,8 +119,8 @@ if (isset($_SESSION['user'])) {
                     <input type="text" id="employee-name" name="employee-name" value="<?php echo htmlspecialchars($row['name']); ?>" ><br>
                 </div>
                 <div class="form-group">
-                    <label for="department">Designation:</label>
-                    <input type="text" id="department" name="department" readonly value="<?php echo htmlspecialchars($row['designation']); ?>"><br>
+                    <label for="department">Designation(editable):</label>
+                    <input type="text" id="department" name="department"  value="<?php echo htmlspecialchars($row['designation']); ?>"><br>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
