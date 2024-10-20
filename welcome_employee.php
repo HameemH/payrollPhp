@@ -95,8 +95,16 @@ WHERE emp_id='$eId' AND loan_status='Accepted'";
               </div><br>
                 <div class="row-sm-4 shadow" style=" background-color:#e4e1fa;padding: 10px;margin: 1%;border-radius: 30%;">Loan
                 <?php 
+                              if($row2['total_loan_amount']>0)
+                              {
+                                echo "<div>".$row2['total_loan_amount']. " tk</div>";
+                              }
+                              else
+                              {
+                                echo "<div>0 tk</div>";
+                              }
+                               ?>
                               
-                              echo "<div>".$row2['total_loan_amount']. "</div>"; ?>
                 </div><br>
               <div class="row-sm-4 shadow" style="background-color: #d5ebe6;padding: 10px;margin: 1%;border-radius: 30%;">Leave Left
                 <div>10</div>

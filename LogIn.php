@@ -73,8 +73,9 @@
                 <!--welcome-->
                     <div class="Data card col-7 px-5 py-1 justify-content-center">
                         <div>
-                       <h1 style="text-align: center;">Welcome to website</h1>
-                       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, nobis ipsa ipsum reprehenderit obcaecati totam ab voluptates ea, atque maxime voluptatem quam voluptas sunt neque iste adipisci temporibus consequatur animi aut magnam soluta! Totam commodi obcaecati autem vitae sint unde deserunt. Quasi animi labore necessitatibus eius unde omnis cumque voluptatem!</p>
+                       <h1 style="text-align: center;">Welcome to website </h1>
+                       <h3 style="text-align: center;">(Hasi Ma'am er project)</h3>
+                       <p style="font-size: large;">Welcome to the <b>Automated Payroll System</b>, designed to streamline and simplify your payroll management. With a user-friendly interface and accurate calculations, you can manage employee information, track salaries, and ensure timely payments, all in one place. Experience efficient, hassle-free payroll processing with our system!</p>
                         </div>
                     </div>
                     <!--LogIn-->
